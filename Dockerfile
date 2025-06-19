@@ -4,8 +4,18 @@ FROM php:8.2-apache
 # Installe les extensions PHP nécessaires à Laravel
 RUN apt-get update && apt-get install -y \
     git unzip libzip-dev zip libpng-dev libonig-dev libxml2-dev libgd-dev curl \
-    && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
-
+    libpq-dev \  # Ajout nécessaire pour les extensions PostgreSQL
+    && docker-php-ext-install \
+    pgsql \      # Extension PostgreSQL
+    pdo \        # PDO (requis pour PDO_PGSQL)
+    pdo_pgsql \  # PDO PostgreSQL
+    mbstring \
+    zip \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    && docker-php-ext-enable pgsql pdo_pgsql  # Optionnel - active les extensions
 # Active le module Apache pour réécriture d'URL
 RUN a2enmod rewrite
 
