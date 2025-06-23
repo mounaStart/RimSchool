@@ -76,6 +76,10 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
+            // ✅ Ajout ici :
+            'options' => defined('PDO::PGSQL_ATTR_SSL_CERT_MODE')
+                ? [PDO::PGSQL_ATTR_SSL_CERT_MODE => env('DB_SSLMODE', 'prefer')]
+                : [],
         ],
 
         'sqlsrv' => [
