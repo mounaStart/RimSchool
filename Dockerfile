@@ -1,6 +1,6 @@
  # Utilise une image officielle PHP avec Apache
-FROM php:8.2-apache
-
+#FROM php:8.2-apache
+FROM php:8.3-apache
 # Installe les extensions PHP nécessaires à Laravel
 
 #RUN apt-get update && apt-get install -y \
